@@ -22,6 +22,15 @@ const useSchema = new mongoose.Schema({
     default:
       "https://ik.imagekit.io/c3pdk6uzm/user-profile.jpg?updatedAt=1789107205372",
   },
+  follower:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"user"
+  }],
+  following:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"user"
+    
+  }]
 });
 
 const userModel = mongoose.model("users", useSchema)

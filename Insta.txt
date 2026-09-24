@@ -29,3 +29,10 @@ user ={
     bio:String,
     profile_image:String   
 }
+
+
+
+Frontend Form
+
+/login - > login form
+/register -> register

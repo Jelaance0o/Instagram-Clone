@@ -1,5 +1,6 @@
 const express = require("express");
-const authController = require("../controllers/auth.controller")
+const authController = require("../controllers/auth.controller");
+const identifyUser = require("../middlewares/auth.middleware");
 const authRoter = express.Router(); //require when make routers outside app file
 
 
@@ -7,5 +8,6 @@ authRoter.post("/register", authController.registerController);
 
 authRoter.post("/login",authController.loginController )
 
+authRoter.get("/get-me",identifyUser ,authController.getMeController);
+
 module.exports = authRoter;
- 

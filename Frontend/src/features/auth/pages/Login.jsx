@@ -2,21 +2,24 @@ import React ,{ useState , useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./form.scss";
 import { useAuth } from "../hooks/useAuth";
-import axios from "axios";
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const {handleLogin} = useAuth()
+  const {handleLogin,loading} = useAuth()
 
-  async function submitHandler(e) {
+  // if(loading){
+  //   return <h1>Loading...</h1>
+  // }
+
+  function submitHandler(e) {
     e.preventDefault();
 
     handleLogin(username , password)
     .then(res=>{
-      console.log(res);
-      
+      console.log(res); 
     })
 
   }

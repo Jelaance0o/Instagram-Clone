@@ -1,59 +1,56 @@
-import React ,{ useState , useEffect} from "react";
-import { Link } from "react-router-dom";
-import "./form.scss";
+import React, { useState} from "react";
+import "../style/form.scss"
+import {Link, useNavigate} from "react-router"
 import { useAuth } from "../hooks/useAuth";
 
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {user , loading , handleLogin } = useAuth()
 
-  const {handleLogin,loading} = useAuth()
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
-  // if(loading){
-  //   return <h1>Loading...</h1>
-  // }
+  const navigate  = useNavigate()
 
-  function submitHandler(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleLogin(username , password)
-    .then(res=>{
-      console.log(res); 
-    })
+    await handleLogin(username, password);
+    
+    navigate('/')
+  };
 
+  if(loading){
+    return <main>
+      <h1>Loading....</h1>
+    </main>
   }
 
   return (
     <main>
       <div className="form-container">
         <h1>Login</h1>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={handleSubmit}>
           <input
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
+            onInput={(e)=>{setUsername(e.target.value)}}
             type="text"
             name="username"
-            placeholder="Enter User"
+            id="username"
+            placeholder="Enter Username"
           />
-
           <input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onInput={(e)=>{setPassword(e.target.value)}}
             type="password"
             name="password"
+            id="password"
             placeholder="Enter Password"
           />
 
-          <button type="submit">Login</button>
+          <button className="button primary-btn">Login</button>
         </form>
+
         <p>
-          Don't have a account ?{" "}
-          <Link className="toggleAuthForm" to="/Register">
-            Register
-          </Link>
+          Don't Have a Account ? <Link to="/register">Create one.</Link>
         </p>
       </div>
     </main>
@@ -61,6 +58,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-// dsa , aptitude 

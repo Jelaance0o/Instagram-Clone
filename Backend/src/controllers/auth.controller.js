@@ -87,7 +87,7 @@ async function getMeController(req,res){
   const user = await userModel.findById(userId)
 
   res.status(200).json({
-    user:{
+    user:{ 
       username:user.username,
       email:user.email,
       bio:user.bio,

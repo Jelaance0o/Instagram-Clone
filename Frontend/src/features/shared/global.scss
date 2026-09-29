@@ -1,17 +1,18 @@
+@use "./button.scss";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body ,#root
- {
+html, body {
   height: 100%;
   width: 100%;
   font-family: Helvetica, sans-serif;
   background-color: rgb(19, 19, 19);
   color: white;
 }
-html{
-    background-color: rgb(25, 24, 24);
+a{
+  text-decoration: none;
+  color: wheat ;
 }

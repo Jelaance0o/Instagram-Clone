@@ -1,77 +1,47 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from 'react'
+import { Link } from 'react-router';
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  console.log(username);
-
-  async function submitHandler(e) {
-    e.preventDefault();
-    await axios.post("http://localhost:3000/api/auth/register",{
-      username,
-      email,
-      password,
-    },{
-      withCredentials:true
-    }).then(res =>{
-      console.log(res.data)
-    })
-  }
+  const handleSubmit = (e) => {
+     e.preventDefault();
+   };
+  
 
   return (
-    <div>
-      <main>
-        <div className="form-container">
-          <h1>Register</h1>
-          <form
-            onSubmit={(e) => {
-              submitHandler(e);
-            }}
-          >
-            <input
-              onInput={(e) => {
-                setUsername(e.target.value);
-              }}
-              type="text"
-              name="username"
-              placeholder="Enter Username"
-            />
+    <main>
+      <div className="form-container">
+        <h1>Register</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Enter Username"
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter Email"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Password"
+          />
 
-            <input
-              onInput={(e) => {
-                setEmail(e.target.value);
-              }}
-              type="email"
-              name="email"
-              placeholder="Email"
-            />
+          <button className="button primary-btn">Register</button>
+        </form>
 
-            <input
-              onInput={(e) => {
-                setPassword(e.target.value);
-              }}
-              type="password"
-              name="password"
-              placeholder="Enter Password"
-            />
-
-            <button type="submit">Register</button>
-          </form>
-          <p>
-            Already have a account ?{" "}
-            <Link className="toggleAuthForm" to="/login">
-              Login
-            </Link>
-          </p>
-        </div>
-      </main>
-      )
-    </div>
+        <p>
+          Already Have an Account ? <Link to="/login">Login to Account.</Link>
+        </p>
+      </div>
+    </main>
   );
 };
+  
 
-export default Register;
+
+export default Register

@@ -47,9 +47,11 @@ res.status(201).json({
 async function  loginController(req,res) {
   const{username,email,password ,} = req.body;
 
-  const user = await userModel.findOne({
-    $or :[{username:username} ,{email:email}]
-  })  
+  const user = await userModel
+    .findOne({
+      $or: [{ username: username }, { email: email }],
+    })
+    .select("+password");
   if (!user){
     return res.status(404).json({
       message:"User not found"
